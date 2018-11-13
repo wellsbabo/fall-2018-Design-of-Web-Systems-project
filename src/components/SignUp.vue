@@ -6,16 +6,16 @@
                     <h1>Service Name or Logo</h1>
                 </div>
                 <div class="sign_up_input_box">
-                    <input class="sign_up_input" type="text" placeholder="사용자 ID" name="user_ID" required>
+                    <input class="sign_up_input" type="text" placeholder="사용자 ID" name="user_ID">
                 </div>
                 <div class="sign_up_input_box">
-                    <input class="sign_up_input" type="text" placeholder="사용자 이름" name="user_name" required>
+                    <input class="sign_up_input" type="text" placeholder="사용자 이름" name="user_name">
                 </div>
                 <div class="sign_up_input_box">
-                    <input class="sign_up_input" type="password" placeholder="비밀번호" name="user_psw" required>
+                    <input class="sign_up_input" type="password" placeholder="비밀번호" name="user_psw">
                 </div>
                 <div class="sign_up_input_box">
-                    <input class="sign_up_input"  type="password" placeholder="비밀번호 확인" name="user_psw-repeat" required>
+                    <input class="sign_up_input"  type="password" placeholder="비밀번호 확인" name="user_psw-repeat">
                 </div>
                 <div class="sign_up_input_box">
                     <input class="sign_up_button" type="submit" value="가입">
