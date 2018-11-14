@@ -1,14 +1,29 @@
 <template>
     <div class="login">
-        <div class="login_bar">
-                <div class="login_bar_el">
-                    <form  v-on:submit.prevent="form_login">
-                        <input class="input_id_pw" v-model="ID" type="text" placeholder="아이디"/>
-                        <input class="input_id_pw" v-model="Password" type="text" placeholder="비밀번호"/>
-                        <input id="login_button" type="submit" value="로그인">
-                    </form>
+        <div class="login_logo">
+            <img class="login_img" src="../../public/img/login_img.png"/>
+        </div>
+        <div class="login_box">
+            <div class="login_el">
+                <div class="login_logo" align="center">
+                    <h1>Service Name or Logo</h1>
                 </div>
-                <div class="login_bar_el" id=register_button><p class="content"><router-link to="/register">회원가입</router-link></p></div>
+                <div class="login_input_box">
+                    <input class="login_input" type="text" placeholder="사용자 ID" name="user_ID">
+                </div>
+                <div class="login_input_box">
+                    <input class="login_input" type="password" placeholder="비밀번호" name="user_psw">
+                </div>
+                <div class="login_input_box">
+                    <input class="login_button" type="submit" value="로그인">
+                </div>
+                <hr class="login_line" align="center">
+                <div class="login_input_box">
+                    <div class="login_text" id=register_button>
+                        <p class="content"><router-link to="/register">회원가입</router-link></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -20,25 +35,70 @@
 </script>
 
 <style scoped>
-    .login_bar{
-        position:absolute;
-        border: solid #6bbdfa;
-    }
-
-    .login_bar_el{
-        display:inline-table;
-        float: left;
-        margin: 3px;
-    }
-
-    #login_button{
-        background-color: white;
+    h1{
         color: #6bbdfa;
-        font-weight: bold;
-        cursor: pointer;
+        margin-bottom: 75px;
+    }
+    .login{
+        background-color: #f9f9f9;
+        height: 600px;
+    }
+    .login_logo{
+        float: left;
+    }
+    .login_img{
+        vertical-align: middle;
+        width: 100%;
+        height: 100%;
+    }
+    .login_box{
+        float: left;
+        display: table;
+        position:relative;
+        border: solid #e3e3e3;
+        width: 30%;
+        height: 70%;
+        background-color: white;
+        border-radius: 4px;
+        vertical-align: middle;
+    }
+    .login_el{
+        display: table-cell;
+        vertical-align: middle;
+        width: 60%;
+        height: 20%;
         margin: 1px;
     }
-
+    .login_input_box{
+        display: table;
+        text-align: center;
+        vertical-align: middle;
+        width: 100%;
+        height: 10%;
+    }
+    .login_input{
+        display: table-cell;
+        vertical-align: middle;
+        background-color: #f9f9f9;
+        width: 70%;
+        height: 45%;
+        border: solid #e3e3e3;
+        border-radius: 4px;
+    }
+    .login_button{
+        font-size: 15px;
+        font-weight: bold;
+        background-color: #6bbdfa;
+        border: none;
+        color: white;
+        width: 70%;
+        height: 45%;
+        border-radius: 4px;
+    }
+    .login_line{
+        width: 70%;
+        border: solid thin black;
+    }
     #register_button a:link{
         font-size: small;
         font-weight: bold;
@@ -54,12 +114,5 @@
         text-decoration: underline;
     }
 
-    .input_id_pw{
-        margin: 1px;
-        padding: 2px;
-    }
 
-    .content{
-        margin:5px;
-    }
 </style>

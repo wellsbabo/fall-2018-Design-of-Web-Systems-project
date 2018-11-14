@@ -11,7 +11,7 @@
         components: {SignUp}
     }
 </script>
-import SignUp from '../components/SignUp.vue'
+
 <style scoped>
 
 </style>

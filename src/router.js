@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import ViewMainFeed from './views/ViewMainFeed'
+import ViewLogin from './views/ViewLogin.vue'
 import ViewRegister from './views/ViewRegister.vue'
 import ViewPersonalFeed from './views/ViewPersonalFeed.vue'
 
@@ -12,8 +13,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'view_login',
+      component: ViewLogin
     },
     {
       path: '/register',
@@ -22,8 +23,13 @@ export default new Router({
     },
     {
         path: '/:id',
-        name: 'personalFeed',
+        name: 'personal_feed',
         component: ViewPersonalFeed
+    },
+    {
+        path: '/main',
+        name: 'main_feed',
+        component: ViewMainFeed
     }
 
       /*
