@@ -144,10 +144,10 @@ router.post('/likes', (req, res, next) => {
       message: 'message id does not exist'
     })
   }
-  messageModel.findById(req.body.messageId, function (err, docs) {
+  messageModel.findOne({messageId: req.body.messageId}, function (err, docs) {
     messageModel.update(
       { messageId: req.body.messageId },
-      { likes: docs.likes + 1 },
+      { likes: docs.likes+1 },
       function (err) {
         if (err) {
           res.json({
