@@ -8,13 +8,13 @@
                         <img class="service" src="../../public/img/제목 없음.png" width="200" height="130"/>
                     </div>
                     <div class="login_input_box">
-                        <input class="login_input" type="text" placeholder="사용자 ID" name="user_ID">
+                        <input v-model="username" class="login_input" type="text" placeholder="사용자 ID" name="user_ID">
                     </div>
                     <div class="login_input_box">
-                        <input class="login_input" type="password" placeholder="비밀번호" name="user_psw">
+                        <input v-model="password" class="login_input" type="password" placeholder="비밀번호" name="user_psw">
                     </div>
                     <div class="login_input_box">
-                        <router-link to="/main"><input class="login_button" type="submit" value="로그인"></router-link>
+                       <input v-on:click="userLogin" class="login_button" type="submit" value="로그인">
                     </div>
                     <hr class="login_line" align="center">
                     <div class="login_input_box">
@@ -30,7 +30,27 @@
 
 <script>
     export default {
-        name: "Login"
+        name: "Login",
+        data(){
+            return{
+                username: '',
+                password: ''
+            }
+        },
+        methods:{
+            userLogin: function(){
+                this.$http.post("http://localhost:8000/user/login",{
+                    username: this.username,
+                    password: this.password
+                }).then((data)=>{
+                    if(data.data.status==0){
+                        this.$router.push('/main')
+                    }else{
+                        alert('password or username incorrect')
+                    }
+                })
+            }
+        }
     }
 </script>
 
