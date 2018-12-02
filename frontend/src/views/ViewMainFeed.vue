@@ -40,7 +40,7 @@
                 <img class="test" src="../../public/img/login_img.png"/>
                 <vs-button type="flat">좋아요</vs-button>
                 <vs-button type="flat">댓글</vs-button>
-                <vs-button type="flat">작성 완료</vs-button>
+                <vs-button type="flat" v-on:click="postMessage" >작성 완료</vs-button>
                 <vs-icon icon="favorite"></vs-icon>
                 <vs-icon icon="favorite_border"></vs-icon>
             </vs-popup>
@@ -95,6 +95,12 @@
       components: {FitFactory},
       data() {
             return {
+                userId:'',
+                content:'',
+                picture:'',
+                msgDate:'',
+                likes: '',
+                sport: '',
                 colorx: '#808080',
                 popupActivo: false,
                 value1: "",
@@ -115,6 +121,20 @@
                     {text: 'Circular trapeze', value: 12},
                 ]
             }
+        },
+        methods:{
+          postMessage: function(){
+            this.$http.post('http://localhost:8000/user/postMessage',{
+              userId: 3,
+              content: "asdasdsa",
+              picture: "adasdad",
+              msgDate: '123123',
+              like: 3,
+              sport: 'adadas'
+            }).then((data)=>{
+              console.log(data.data)
+            })
+          }
         }
   }
 </script>
