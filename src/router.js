@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ViewMainFeed from './views/ViewMainFeed'
+import ViewMainFeed from './views/ViewMainFeed.vue'
 import ViewLogin from './views/ViewLogin.vue'
 import ViewRegister from './views/ViewRegister.vue'
 import ViewPersonalFeed from './views/ViewPersonalFeed.vue'
@@ -18,17 +18,17 @@ export default new Router({
     },
     {
       path: '/register',
-      name: 'register',
+      name: 'view_register',
       component: ViewRegister
     },
     {
-        path: '/:id',
-        name: 'personal_feed',
+        path: '/user/:id',
+        name: 'view_personal_feed',
         component: ViewPersonalFeed
     },
     {
         path: '/main',
-        name: 'main_feed',
+        name: 'view_main_feed',
         component: ViewMainFeed
     }
 
