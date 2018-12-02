@@ -2,7 +2,7 @@
     <div class="sign_up">
         <div class="sign_up_box">
             <div class="sign_up_el">
-                <div class="sign_up_logo" align="center">
+                <div class="sign_up_logo">
                     <h1>Service Name or Logo</h1>
                 </div>
                 <div class="sign_up_input_box">
@@ -38,9 +38,9 @@
         margin-bottom: 75px;
     }
     .sign_up{
-        background-color: #f9f9f9;
+        background-color: #eeeeef;
+        text-align: center;
         height: 600px;
-
     }
     .sign_up_box{
         display: table;
