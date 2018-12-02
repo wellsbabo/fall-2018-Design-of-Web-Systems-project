@@ -16,11 +16,5 @@
 </script>
 
 <style scoped>
-    footer{
-        font-size: 12px;
-        font-weight: bold;
-        color: lightgray;
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
+    
 </style>

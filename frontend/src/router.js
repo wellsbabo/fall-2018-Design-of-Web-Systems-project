@@ -21,7 +21,7 @@ export default new Router({
       component: ViewRegister
     },
     {
-        path: '/main/:userId',
+        path: '/:userId',
         name: 'ViewMainPage',
         component: ViewMainPage
     }

@@ -26,15 +26,16 @@
 
 <script>
     export default {
-        name: "SignUp"
+        name: "SignUp",
+        data(){
+            return{
+                point: '#25b7d3'
+            }
+        }
     }
 </script>
 
 <style scoped>
-    h1{
-        color: #6bbdfa;
-        margin-bottom: 75px;
-    }
     .sign_up{
         text-align: center;
     }

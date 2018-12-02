@@ -3,23 +3,32 @@
         <div class="user_photo">
             <img src="../../public/img/profile.jpg" id="photo" align="right">
         </div>
+
         <div class="user_profile">
             <div class="user_profile_data">
-                <div id="user_id">ming___jee
-                    <vs-button color="#25b7d3" type="flat" size="small" id="edit">프로필 편집</vs-button>
-                    <vs-button :color="colorx" type="flat" size="small" id="logout">로그아웃</vs-button>
-                </div><br>
-                <div id="user_post_name">게시물 <post id="user_post_number">98</post></div><br>
-                <div id="user_name">밍지</div>
-                <div id="user_memo">행복한 밍디월드~🍔🍕🍗🍺🍩🍦🍰🍒<br>운동도 열심히 해요 아자아자</div>
+                <div id="user_id">이용자 아이디
+                    <vs-button :color="point" type="flat" size="small" id="edit">프로필 편집</vs-button>
+                    <post-msg/>
+                </div>
+                <div id="user_post_name">게시물 <post id="user_post_number">게시물 총 개수</post></div><br>
+                <div id="user_name">이용자 닉네임</div>
+                <div id="user_memo">이용자 메모</div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import PostMsg from "./PostMsg";
     export default {
-        name: "PersonalInfo"
+        name: "PersonalInfo",
+        components: {PostMsg},
+        data() {
+            return {
+                colorx: '#808080',
+                point: '#25b7d3'
+            }
+        }
     }
 </script>
 
@@ -31,11 +40,9 @@
         border-top: 1px solid #eeeeef;
     }
     .user_photo{
-        margin-top: 50px;
         display: inline-block;
     }
     .user_profile{
-        margin-top: 50px;
         display: inline-block;
         text-align: left;
     }
@@ -44,6 +51,7 @@
     }
     #user_id{
         font-size: 24px;
+        display: inline-block;
     }
     #user_post_name{
         font-size: 16px;
@@ -56,9 +64,9 @@
         font-weight: bold;
     }
     #photo{
-        height: 150px;
-        width: 150px;
-        border-radius: 75px;
+        height: 170px;
+        width: 170px;
+        border-radius: 85px;
         border: 1px solid #eeeeef;
     }
 </style>

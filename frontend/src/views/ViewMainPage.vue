@@ -4,9 +4,6 @@
 
         <StickyHeader/>
         <UserInfo/>
-        <PostMsg/>
-
-
 
         <div class="view_main_page_menu">
             <vs-tabs :color="point" vs-alignment="center">
@@ -37,19 +34,22 @@
 <script>
   import UserInfo from "../components/UserInfo"
   import StickyHeader from "../components/StickyHeader"
-  import PostMsg from "../components/PostMsg"
   import FeedPage from "../components/FeedPage";
   import FreeBoard from "../components/FreeBoard"
   export default {
       name: "ViewMainFeed",
       components: {
           FeedPage,
-          PostMsg,
           UserInfo,
           StickyHeader,
           FreeBoard
       },
-
+      data() {
+          return {
+              colorx: '#808080',
+              point: '#25b7d3'
+          }
+      }
   }
 </script>
 
@@ -58,6 +58,7 @@
         text-align: center;
     }
     .view_main_page_menu{
+        margin-top: 40px;
         margin-bottom: 50px;
     }
     .footer {

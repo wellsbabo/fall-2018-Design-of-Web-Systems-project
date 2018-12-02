@@ -1,12 +1,12 @@
 <template>
     <div class="login">
-        <img class="login_logo" src="../../public/img/login_img.png" width="200" height="130"/>
+        <img class="login_logo" src="../../public/img/login_img.png" width="536" height="286"/>
         <div class="login_input_box">
-            <input class="login_input" type="text" placeholder="사용자 ID" name="user_ID">
-            <input class="login_input" type="password" placeholder="비밀번호" name="user_psw">
+            <input class="login_input" type="text" placeholder="사용자 ID" name="user_ID"><br>
+            <input class="login_input" type="password" placeholder="비밀번호" name="user_psw"><br>
+            <router-link to="/:userId"><input class="login_button" type="submit" value="로그인"></router-link><br>
+            <router-link to="/register" id=login_register_button>회원가입</router-link>
         </div>
-        <router-link to="/main/:userId"><input class="login_button" type="submit" value="로그인"></router-link>
-        <router-link to="/register" id=login_register_button>회원가입</router-link>
     </div>
 </template>
 
@@ -21,10 +21,11 @@
         text-align: center;
     }
     .login_logo{
-        display: inline-block;
+        margin-top: 30px;
     }
-
-
+    .login_input_box{
+        margin-top: 30px;
+    }
     .login_input{
         display: table-cell;
         width: 170px;
@@ -56,5 +57,4 @@
         color: black;
         text-decoration: underline;
     }
-
 </style>
