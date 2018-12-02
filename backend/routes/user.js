@@ -202,4 +202,61 @@ router.post('/postComment', (req, res, next) => {
   })
 })
 
+router.get('/getMessage',(req,res,next)=>{
+  if(!req.body.userId){
+    res.json({
+      status: 1,
+      message: 'userId can not be empty',
+    })
+  }
+  messageModel.find({userId: req.body.userId},function(err,docs){
+    if(err){
+      res.json({
+        status: 1,
+        message: 'get message error',
+        data: err
+      })
+    }
+    res.json(docs)
+  })
+})
+
+router.get('/getSport',(req,res,next)=>{
+  if(!req.body.sprot){
+    res.json({
+      status: 1,
+      message: 'sport can not be empty',
+    })
+  }
+  messageModel.find({sport: req.body.sport},function(err, docs){
+    if(err){
+      res.json({
+        status: 1,
+        message:'get sport error',
+        data: err
+      })
+    }
+    res.json(docs)
+  })
+})
+
+router.get('/getInfo',(req,res,next)=>{
+  if(req.body.username){
+    res.json({
+      status:1,
+      message: 'username can not be empty'
+    })
+  }
+  userModel.findOne({userId: req.body.username},function(err,docs){
+    if(err){
+      res.json({
+        status: 1,
+        message: 'user get info error',
+        data: err
+      })
+    }
+    res.json(docs)
+  })
+})
+
 module.exports = router

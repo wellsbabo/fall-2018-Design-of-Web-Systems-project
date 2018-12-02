@@ -9,8 +9,8 @@ const messageSchema = new mongoose.Schema({
   content: String,
   picture: String,
   msgDate: Date,
-  likes: Number,
-  sport: String
+  likes: [{}],
+  sport: Number
 })
 
 messageSchema.plugin(autoIncrement, {

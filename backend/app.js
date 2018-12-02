@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 
 require('./db/mongo') //connect db
 const user = require('./routes/user')
+const mianpage = require('./routes/mianpage')
 
 const app = express()
 app.use((req, res, next) =>{
@@ -14,5 +15,6 @@ app.use((req, res, next) =>{
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use('/user',user)
+app.use('/mian', mianpage)
 
 module.exports = app
