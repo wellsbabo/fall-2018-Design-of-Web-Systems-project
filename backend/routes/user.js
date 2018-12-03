@@ -1,4 +1,6 @@
 const { Router } = require('Express')
+const formidable = require('formidable')
+const path = require('path')
 const userModel = require('../db/models/user')
 const commentModel = require('../db/models/comment')
 const messageModel = require('../db/models/message')
@@ -112,25 +114,36 @@ router.post('/postMessage', (req, res, next) => {
       message: 'message date empty'
     })
   }
-  var postMessage = new messageModel({
-    userId: req.body.userId,
-    content: req.body.content,
-    picture:req.body.picture,
-    msgDate: req.body.msgDate,
-    sprot: req.body.sprot
-  })
 
-  postMessage.save((err)=>{
-    if(err){
+  var form = formidable.IncomingForm()
+  var targetFile = path.join(__dirname, './images')
+  form.encoding = 'utf-8'
+  form.uploadDir = targetFile
+  form.keepExtensions = true
+  form.maxFieldsSize = 2 * 1024 * 1024
+
+  form.parse(req, function (err, fields, files) {
+    
+    var postMessage = new messageModel({
+      userId: req.body.userId,
+      content: req.body.content,
+      picture: files.image.path,
+      msgDate: req.body.msgDate,
+      sprot: req.body.sprot
+    })
+  
+    postMessage.save((err) => {
+      if (err) {
+        res.json({
+          status: 1,
+          message: 'message post  error',
+          data: err
+        })
+      }
       res.json({
-        status: 1,
-        message: 'message post  error',
-        data: err
+        status: 0,
+        message: 'message post success'
       })
-    }
-    res.json({
-      status: 0,
-      message: 'message post success'
     })
   })
 
@@ -144,10 +157,10 @@ router.post('/likes', (req, res, next) => {
       message: 'message id does not exist'
     })
   }
-  messageModel.findOne({messageId: req.body.messageId}, function (err, docs) {
+  messageModel.findOne({ messageId: req.body.messageId }, function (err, docs) {
     messageModel.update(
       { messageId: req.body.messageId },
-      { likes: docs.likes+1 },
+      { likes: docs.likes + 1 },
       function (err) {
         if (err) {
           res.json({
@@ -202,15 +215,15 @@ router.post('/postComment', (req, res, next) => {
   })
 })
 
-router.get('/getMessage',(req,res,next)=>{
-  if(!req.body.userId){
+router.get('/getMessage', (req, res, next) => {
+  if (!req.body.userId) {
     res.json({
       status: 1,
       message: 'userId can not be empty',
     })
   }
-  messageModel.find({userId: req.body.userId},function(err,docs){
-    if(err){
+  messageModel.find({ userId: req.body.userId }, function (err, docs) {
+    if (err) {
       res.json({
         status: 1,
         message: 'get message error',
@@ -221,18 +234,18 @@ router.get('/getMessage',(req,res,next)=>{
   })
 })
 
-router.get('/getSport',(req,res,next)=>{
-  if(!req.body.sprot){
+router.get('/getSport', (req, res, next) => {
+  if (!req.body.sprot) {
     res.json({
       status: 1,
       message: 'sport can not be empty',
     })
   }
-  messageModel.find({sport: req.body.sport},function(err, docs){
-    if(err){
+  messageModel.find({ sport: req.body.sport }, function (err, docs) {
+    if (err) {
       res.json({
         status: 1,
-        message:'get sport error',
+        message: 'get sport error',
         data: err
       })
     }
@@ -240,15 +253,15 @@ router.get('/getSport',(req,res,next)=>{
   })
 })
 
-router.get('/getInfo',(req,res,next)=>{
-  if(req.body.username){
+router.get('/getInfo', (req, res, next) => {
+  if (req.body.username) {
     res.json({
-      status:1,
+      status: 1,
       message: 'username can not be empty'
     })
   }
-  userModel.findOne({userId: req.body.username},function(err,docs){
-    if(err){
+  userModel.findOne({ userId: req.body.username }, function (err, docs) {
+    if (err) {
       res.json({
         status: 1,
         message: 'user get info error',

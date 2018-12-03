@@ -9,7 +9,7 @@ const messageSchema = new mongoose.Schema({
   content: String,
   picture: String,
   msgDate: Date,
-  likes: [{}],
+  likes: Number,
   sport: Number
 })
 
