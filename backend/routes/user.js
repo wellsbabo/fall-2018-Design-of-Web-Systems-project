@@ -1,5 +1,6 @@
 const { Router } = require('Express')
 const formidable = require('formidable')
+const FormData = require('form-data')
 const path = require('path')
 const fs = require('fs')
 const userModel = require('../db/models/user')
@@ -197,8 +198,8 @@ router.post('/postComment', (req, res, next) => {
   })
 })
 
+//get message 
 router.get('/getMessageImg', (req, res, next) => {
-
   messageModel.find({ userId: 1 }, function (err, docs) {
     if (err) {
       res.json({
@@ -207,23 +208,11 @@ router.get('/getMessageImg', (req, res, next) => {
         data: err
       })
     }
-    
-    for (let index = 0; index < docs.length; index++) {
-      fs.readFile(docs[index].picture,function(err, data){
-        if(err){
-          res.json({
-            status: 1,
-            message: 'readFile error',
-            data: err
-          })
-        }
-        res.send(data)
-      })
-      
-    }
+    res.sendFile(__dirname+docs[0].picture)
   })
 })
 
+//get message by search sport
 router.get('/getSport', (req, res, next) => {
   if (!req.body.sport) {
     res.json({
@@ -243,6 +232,7 @@ router.get('/getSport', (req, res, next) => {
   })
 })
 
+//get user information
 router.get('/getInfo', (req, res, next) => {
   if (req.body.username) {
     res.json({
