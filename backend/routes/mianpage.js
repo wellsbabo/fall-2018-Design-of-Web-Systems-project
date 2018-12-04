@@ -37,3 +37,6 @@ router.get('/getSport', (req, res, next) => {
     res.json(docs)
   })
 })
+
+module.exports = router
+

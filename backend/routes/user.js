@@ -1,6 +1,7 @@
 const { Router } = require('Express')
 const formidable = require('formidable')
 const path = require('path')
+const fs = require('fs')
 const userModel = require('../db/models/user')
 const commentModel = require('../db/models/comment')
 const messageModel = require('../db/models/message')
@@ -90,31 +91,7 @@ router.post('/register', (req, res, next) => {
 
 // post message
 router.post('/postMessage', (req, res, next) => {
-  if (!req.body.userId) {
-    res.json({
-      status: 1,
-      message: 'userId empty'
-    })
-  }
-  if (!req.body.content) {
-    res.json({
-      status: 1,
-      message: 'content empty'
-    })
-  }
-  if (!req.body.picture) {
-    res.json({
-      status: 1,
-      message: 'picture empty'
-    })
-  }
-  if (!req.body.msgDate) {
-    res.json({
-      status: 1,
-      message: 'message date empty'
-    })
-  }
-
+  
   var form = formidable.IncomingForm()
   var targetFile = path.join(__dirname, './images')
   form.encoding = 'utf-8'
@@ -123,20 +100,26 @@ router.post('/postMessage', (req, res, next) => {
   form.maxFieldsSize = 2 * 1024 * 1024
 
   form.parse(req, function (err, fields, files) {
-    
+    if(err){
+      res.json({
+        status: 1,
+        message: 'post message error',
+        data: err
+      })
+    }
     var postMessage = new messageModel({
-      userId: req.body.userId,
-      content: req.body.content,
-      picture: files.image.path,
-      msgDate: req.body.msgDate,
-      sprot: req.body.sprot
+      userId: fields.userId,
+      content:fields.content,
+      picture: files.picture.path,
+      msgDate: fields.msgDate,
+      sport: fields.sport
     })
   
     postMessage.save((err) => {
       if (err) {
         res.json({
           status: 1,
-          message: 'message post  error',
+          message: 'message save error',
           data: err
         })
       }
@@ -146,7 +129,6 @@ router.post('/postMessage', (req, res, next) => {
       })
     })
   })
-
 })
 
 //likes
@@ -215,14 +197,9 @@ router.post('/postComment', (req, res, next) => {
   })
 })
 
-router.get('/getMessage', (req, res, next) => {
-  if (!req.body.userId) {
-    res.json({
-      status: 1,
-      message: 'userId can not be empty',
-    })
-  }
-  messageModel.find({ userId: req.body.userId }, function (err, docs) {
+router.get('/getMessageImg', (req, res, next) => {
+
+  messageModel.find({ userId: 1 }, function (err, docs) {
     if (err) {
       res.json({
         status: 1,
@@ -230,12 +207,25 @@ router.get('/getMessage', (req, res, next) => {
         data: err
       })
     }
-    res.json(docs)
+    
+    for (let index = 0; index < docs.length; index++) {
+      fs.readFile(docs[index].picture,function(err, data){
+        if(err){
+          res.json({
+            status: 1,
+            message: 'readFile error',
+            data: err
+          })
+        }
+        res.send(data)
+      })
+      
+    }
   })
 })
 
 router.get('/getSport', (req, res, next) => {
-  if (!req.body.sprot) {
+  if (!req.body.sport) {
     res.json({
       status: 1,
       message: 'sport can not be empty',
