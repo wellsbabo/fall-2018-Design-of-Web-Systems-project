@@ -113,8 +113,8 @@ router.post('/postMessage', (req, res, next) => {
       content:fields.content,
       picture: files.picture.path,
       msgDate: fields.msgDate,
-      sport: fields.sport
     })
+
   
     postMessage.save((err) => {
       if (err) {
@@ -208,6 +208,7 @@ router.get('/getMessageImg', (req, res, next) => {
         data: err
       })
     }
+    
     res.sendFile(__dirname+docs[0].picture)
   })
 })
@@ -220,16 +221,6 @@ router.get('/getSport', (req, res, next) => {
       message: 'sport can not be empty',
     })
   }
-  messageModel.find({ sport: req.body.sport }, function (err, docs) {
-    if (err) {
-      res.json({
-        status: 1,
-        message: 'get sport error',
-        data: err
-      })
-    }
-    res.json(docs)
-  })
 })
 
 //get user information

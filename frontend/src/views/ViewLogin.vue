@@ -15,5 +15,7 @@
 </script>
 
 <style scoped>
-
+    .view_login{
+        text-align: center;
+    }
 </style>

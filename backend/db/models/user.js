@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
       unique: true
     },
     password: String,
-    memo: String
+    memo: String,
+    nickName: String
 })
 
 userSchema.plugin(autoIncrement, {

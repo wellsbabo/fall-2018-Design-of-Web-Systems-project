@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="view_register">
         <SignUp/>
     </div>
 </template>
@@ -13,5 +13,7 @@
 </script>
 
 <style scoped>
-
+    .view_register{
+        text-align: center;
+    }
 </style>

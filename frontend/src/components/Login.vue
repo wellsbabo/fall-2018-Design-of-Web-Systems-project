@@ -1,27 +1,18 @@
 <template>
     <div class="login">
-        <div class="login_logo">
-            <img class="login_img" src="../../public/img/login_img.png"/>
-        </div>
-        <div class="login_box">
-            <div class="login_el">
-                <div class="login_logo" align="center">
-                    <h1>Service Name or Logo</h1>
+        <div id="blank"></div>
+        <div class="center">
+            <div class="login_logo">
+                <img src="../../public/img/login_img.png" width="402" height="214"/>
+            </div>
+            <div class="login_input_box">
+                <div class="login_input_content">
+                    <input class="login_input" type="text" placeholder="사용자 ID" name="user_ID" id="user_ID" ><br>
+                    <input class="login_input" type="password" placeholder="비밀번호" name="user_psw" id="user_psw">
                 </div>
-                <div class="login_input_box">
-                    <input class="login_input" type="text" placeholder="사용자 ID" name="user_ID">
-                </div>
-                <div class="login_input_box">
-                    <input class="login_input" type="password" placeholder="비밀번호" name="user_psw">
-                </div>
-                <div class="login_input_box">
-                    <input class="login_button" type="submit" value="로그인">
-                </div>
-                <hr class="login_line" align="center">
-                <div class="login_input_box">
-                    <div class="login_text" id=register_button>
-                        <p class="content"><router-link to="/register">회원가입</router-link></p>
-                    </div>
+                <div class="login_button_content">
+                    <router-link to="/main/:userId"><input class="login_button" type="submit" value="로그인"></router-link><br>
+                    <div id="login_register_button"><router-link to="/register" >회원가입</router-link></div>
                 </div>
             </div>
         </div>
@@ -35,84 +26,73 @@
 </script>
 
 <style scoped>
-    h1{
-        color: #6bbdfa;
-        margin-bottom: 75px;
+    #blank{
+        float: left;
+        height: 50%;
     }
     .login{
-        background-color: #f9f9f9;
-        height: 600px;
+        text-align: center;
+    }
+    .center{
+        position: relative;
+        clear: both;
     }
     .login_logo{
-        float: left;
-    }
-    .login_img{
-        vertical-align: middle;
-        width: 100%;
-        height: 100%;
-    }
-    .login_box{
-        float: left;
-        display: table;
-        position:relative;
-        border: solid #e3e3e3;
-        width: 30%;
-        height: 70%;
-        background-color: white;
-        border-radius: 4px;
-        vertical-align: middle;
-    }
-    .login_el{
-        display: table-cell;
-        vertical-align: middle;
-        width: 60%;
-        height: 20%;
-        margin: 1px;
+        padding: 30px 0;
     }
     .login_input_box{
-        display: table;
-        text-align: center;
-        vertical-align: middle;
-        width: 100%;
-        height: 10%;
+        margin: 20px auto 0;
+        border: 1px solid #eeeeef;
+        background-color: #fbfbfb;
+        width: 400px;
+        height: 250px;
+    }
+    .login_input_content{
+        margin-top: 50px;
+    }
+    .login_button_content{
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
     .login_input{
-        display: table-cell;
-        vertical-align: middle;
-        background-color: #f9f9f9;
-        width: 70%;
-        height: 45%;
-        border: solid #e3e3e3;
+        border: 1px solid #e3e3e3;
         border-radius: 4px;
+        background-color: white;
+        width: 70%;
+        height: 40px;
+    }
+    #user_ID{
+        margin-bottom: 5px;
     }
     .login_button{
         font-size: 15px;
         font-weight: bold;
-        background-color: #6bbdfa;
+        background-color: #25b7d3;
         border: none;
         color: white;
-        width: 70%;
-        height: 45%;
         border-radius: 4px;
-    }
-    .login_line{
         width: 70%;
-        border: solid thin black;
+        height: 35px;
+        margin-bottom: 15px;
     }
-    #register_button a:link{
-        font-size: small;
+    #login_register_button{
+        padding: 0 0 50px 0;
+    }
+
+    #login_register_button a:link{
+        font-size: middle;
         font-weight: bold;
-        color: #6bbdfa;
+        color: #25b6d2;
         text-decoration: none;
     }
-    #register_button a:visited{
-        color: #6bbdfa;
+    #login_register_button a:visited{
+        font-size: middle;
+        color: #25b6d2;
         text-decoration: none;
     }
-    #register_button a:hover{
+    #login_register_button a:hover{
+        font-size: middle;
         color: black;
         text-decoration: underline;
     }
-
-
 </style>

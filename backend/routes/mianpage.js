@@ -18,6 +18,7 @@ router.get('getMessage', (req, res, next) => {
   })
 })
 
+//get message by search sport
 router.get('/getSport', (req, res, next) => {
   if (!req.body.sport) {
     res.json({
